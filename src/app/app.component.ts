@@ -1,12 +1,36 @@
-import { Component } from '@angular/core';
-import { LayoutComponent } from "./layout/layout.component";
+import { Component, OnInit } from '@angular/core';
+import { Recipe } from './shared/models/recipe.model';
+import { RecipeService } from './core/services/recipe.service';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { LayoutComponent } from './layout/layout.component';
 
 @Component({
   selector: 'app-root',
-  imports: [LayoutComponent],
+  imports: [LayoutComponent, CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers: [RecipeService],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontend';
+
+  public recipes: Recipe[] | undefined;
+
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit() {
+    this.getRecipes();
+  }
+
+  public getRecipes(): void {
+    this.recipeService.getRecipes().subscribe(
+      (response: Recipe[]) => {
+        this.recipes = response;
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
 }
