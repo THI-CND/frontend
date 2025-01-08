@@ -1,17 +1,25 @@
-<app-layout></app-layout>
+<router-outlet></router-outlet>
 
-<div *ngFor="let recipe of recipes" class="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md space-y-4">
-    <div class="text-xl font-medium text-black">{{ recipe.name }}</div>
-    <div class="text-gray-500">by {{ recipe.author.name }} ({{ recipe.author.username }})</div>
-    <div class="text-gray-700">{{ recipe.description }}</div>
-  
-    <div *ngFor="let step of recipe.steps" class="mt-4">
-      <div class="font-semibold text-gray-800">Schritt {{ recipe.steps.indexOf(step) + 1 }}</div>
-      <div class="text-gray-600">{{ step.description }}</div>
-      <ul class="list-disc list-inside mt-2">
-        <li *ngFor="let ingredient of step.ingredients">
-          {{ ingredient.quantity }} {{ ingredient.ingredient.unit }} {{ ingredient.ingredient.name }}
-        </li>
-      </ul>
-    </div>
+<div
+  *ngFor="let recipe of recipes"
+  class="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md space-y-4"
+>
+  <div class="text-xl font-medium text-black">{{ recipe.name }}</div>
+  <div class="text-gray-500">
+    by {{ recipe.author.name }} ({{ recipe.author.username }})
   </div>
+  <div class="text-gray-700">{{ recipe.description }}</div>
+
+  <div *ngFor="let step of recipe.steps" class="mt-4">
+    <div class="font-semibold text-gray-800">
+      Schritt {{ recipe.steps.indexOf(step) + 1 }}
+    </div>
+    <div class="text-gray-600">{{ step.description }}</div>
+    <ul class="list-disc list-inside mt-2">
+      <li *ngFor="let ingredient of step.ingredients">
+        {{ ingredient.quantity }} {{ ingredient.ingredient.unit }}
+        {{ ingredient.ingredient.name }}
+      </li>
+    </ul>
+  </div>
+</div>

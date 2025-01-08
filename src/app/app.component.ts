@@ -4,10 +4,12 @@ import { RecipeService } from './core/services/recipe.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './layout/layout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [LayoutComponent, CommonModule, HttpClientModule],
+  imports: [LayoutComponent, CommonModule, HttpClientModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [RecipeService],
