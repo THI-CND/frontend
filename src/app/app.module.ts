@@ -26,6 +26,9 @@ import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe
 import { MatSelectModule } from '@angular/material/select';
 import { CreateReviewComponent } from './components/recipe/create-review/create-review.component';
 import { IngredientComponent } from './components/ingredient/ingredient.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { IngredientComponent } from './components/ingredient/ingredient.componen
     RecipeStepQuantifiedIngredientComponent,
     EditRecipeComponent,
     CreateReviewComponent,
-    IngredientComponent
+    IngredientComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,8 @@ import { IngredientComponent } from './components/ingredient/ingredient.componen
     MatChipsModule,
     MatDialogModule,
     MatSelectModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
   ],
   providers: [
     provideAnimationsAsync()
