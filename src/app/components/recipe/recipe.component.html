@@ -1,0 +1,95 @@
+<div class="body">
+    @if (recipe$ | async; as recipe) {
+    <h1>
+        Rezept
+        <i>{{recipe.name}}</i>
+    </h1>
+
+    <p>
+        {{recipe.description}}
+    </p>
+
+    <mat-tab-group selectedIndex="2">
+        <mat-tab label="Übersicht">
+            <h2>Allgemein</h2>
+            <table>
+                <tr>
+                    <td>ID:</td>
+                    <td>{{ recipe.id }}</td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ recipe.name }}</td>
+                </tr>
+                <tr>
+                    <td>Author:</td>
+                    <td>{{ recipe.author }}</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{ recipe.description }}</td>
+                </tr>
+            </table>
+
+            <h2>Tags</h2>
+            @if (tags$ | async; as tags) {
+            <h3>Intersection</h3>
+            <mat-chip-set>
+                @for (tag of tags.intersection; track tag) {
+                <mat-chip>{{tag}}</mat-chip>
+                }
+            </mat-chip-set>
+
+            <h3>Union</h3>
+            <mat-chip-set>
+                @for (tag of tags.union; track tag) {
+                <mat-chip>{{tag}}</mat-chip>
+                }
+            </mat-chip-set>
+            }
+            @else {
+            lädt...
+            }
+
+            <h2>Zubereitung</h2>
+            <ol>
+                @for (step of recipe.steps; track $index) {
+                <li>
+                    <app-recipe-step [step]="step"></app-recipe-step>
+                </li>
+                }
+            </ol>
+        </mat-tab>
+
+        <mat-tab label="Bearbeiten">
+            <app-edit-recipe [recipe]="recipe"></app-edit-recipe>
+        </mat-tab>
+
+        <mat-tab label="Reviews">
+            <br>
+            <button mat-flat-button (click)="createReview(recipe.id)">
+                <mat-icon>add</mat-icon>
+                Create Review
+            </button>
+            <div class="reviews">
+                @if (reviews$ | async; as reviews) {
+                @for (review of reviews; track $index) {
+                <mat-card>
+                    <mat-card-title>
+                        {{review.rating}}/5 by {{review.author}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        <br>
+                        {{review.comment}}
+                    </mat-card-content>
+                </mat-card>
+                }
+                }
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    }
+    @else {
+    lädt...
+    }
+</div>

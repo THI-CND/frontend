@@ -1,0 +1,7 @@
+@if (ingredient$ | async; as ingredient) {
+    <span>{{quantifiedIngredient.quantity}} {{ingredient.unit}} {{ingredient.name}} ({{ingredient.tags}})</span>
+}
+@else {
+    <span>{{quantifiedIngredient.quantity}}x unbekannter Ingredient {{quantifiedIngredient.ingredient}}</span>
+}
+<br>

@@ -1,0 +1,14 @@
+.body {
+    margin: 1em;
+}
+
+.reviews {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2em;
+
+    mat-card {
+        width: 500px;
+        padding: 1em;
+    }
+}

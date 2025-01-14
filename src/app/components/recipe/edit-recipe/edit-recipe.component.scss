@@ -1,0 +1,43 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+
+}
+
+.steps {
+    margin-left: 4em;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+
+    hr {
+        margin-bottom: 2em;
+        width: 100%;
+    }
+}
+
+.ingredients {
+    margin-left: 4em;
+}
+
+.ingredient, .description {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: baseline;
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.update {
+    margin-top: 5em;
+}
+
+button {
+    margin-right: 1em;
+}

@@ -1,0 +1,11 @@
+{{step.description}}
+<h4>Zutaten</h4>
+<ul>
+    @for (quantifiedIngredient of step.quantifiedIngredients; track $index) {
+    <li>
+        <app-recipe-step-quantified-ingredient [quantifiedIngredient]="quantifiedIngredient"></app-recipe-step-quantified-ingredient>
+    </li>
+    }
+</ul>
+<br>
+<br>
