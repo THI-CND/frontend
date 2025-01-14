@@ -29,6 +29,9 @@ import { IngredientComponent } from './components/ingredient/ingredient.componen
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { NotificationComponent } from './components/notification/notification.component';
+import { CreateUserComponent } from './components/home/create-user/create-user.component';
+import {MatTableModule} from '@angular/material/table';
+import { UserComponent } from './components/user/user.component'; 
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { NotificationComponent } from './components/notification/notification.co
     EditRecipeComponent,
     CreateReviewComponent,
     IngredientComponent,
-    NotificationComponent
+    NotificationComponent,
+    CreateUserComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +67,7 @@ import { NotificationComponent } from './components/notification/notification.co
     MatSelectModule,
     MatBadgeModule,
     MatBottomSheetModule,
+    MatTableModule,
   ],
   providers: [
     provideAnimationsAsync()

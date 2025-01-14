@@ -1,0 +1,24 @@
+<div class="body">
+    <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="bschwering" [(ngModel)]="username">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Vorname</mat-label>
+        <input matInput placeholder="Benedikt" [(ngModel)]="firstname">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nachname</mat-label>
+        <input matInput placeholder="Schwering" [(ngModel)]="lastname">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button (click)="create()">
+        <mat-icon>add</mat-icon>
+        Create User
+    </button>
+</div>

@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { RecipeService } from '../../services/recipe/recipe.service';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
 import { FeedService } from '../../services/feed/feed.service';
 import { IngredientService } from '../../services/ingredient/ingredient.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIngredientComponent } from './create-ingredient/create-ingredient.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { RecipeResponse } from '../../types/recipe.types';
+import { IngredientResponse } from '../../types/ingredient.types';
+import { UserResponseV1 } from '../../types/user.types';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +22,11 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 export class HomeComponent {
 
   feed$!: Observable<any[]>;
-  recipes$!: Observable<any[]>;
-  ingredients$!: Observable<any[]>;
+  recipes$!: Observable<RecipeResponse[]>;
+  ingredients$!: Observable<IngredientResponse[]>;
+  users$!: Observable<UserResponseV1[]>;
+
+  usersDisplayedColumns: string[] = ['username', 'firstname', 'lastname', 'actions'];
 
   constructor(
     private recipeService: RecipeService,
@@ -33,6 +40,7 @@ export class HomeComponent {
     this.getFeed();
     this.getRecipes();
     this.getIngredients();
+    this.getUsers();
   }
 
   getFeed() {
@@ -47,6 +55,10 @@ export class HomeComponent {
     this.ingredients$ = this.ingredientService.getIngredients();
   }
 
+  getUsers() {
+    this.users$ = this.userService.getUsersV1();
+  }
+
   addRecipe() {
     this.dialog.open(CreateRecipeComponent).afterClosed().subscribe(() => {
         this.ngOnInit();
@@ -55,6 +67,12 @@ export class HomeComponent {
 
   addIngredient() {
     this.dialog.open(CreateIngredientComponent).afterClosed().subscribe(() => {
+        this.ngOnInit();
+    });
+  }
+
+  addUser() {
+    this.dialog.open(CreateUserComponent).afterClosed().subscribe(() => {
         this.ngOnInit();
     });
   }

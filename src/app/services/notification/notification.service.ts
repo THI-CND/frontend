@@ -20,7 +20,7 @@ export class NotificationService {
     return this.httpClient.get<NotificationResponse[]>(`${environment.api.notificationV1}/status/UNREAD?username=${username}`);
   }
 
-  updateReadStatus(notificationId: number) {
-    return this.httpClient.put(`${environment.api.notificationV2}/${notificationId}`, {status: 'READ'});
+  updateReadStatus(notificationId: number, username: string) {
+    return this.httpClient.put(`${environment.api.notificationV2}/${notificationId}?username=${username}`, {status: 'READ'});
   }
 }

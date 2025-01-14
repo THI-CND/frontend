@@ -25,7 +25,7 @@ export class NotificationComponent {
   }
 
   read(notification: NotificationResponse) {
-    this.notificationService.updateReadStatus(notification.id).subscribe(() => {
+    this.notificationService.updateReadStatus(notification.id, this.userService.getUsername()).subscribe(() => {
       this.ngOnInit();
     });
   }

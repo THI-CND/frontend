@@ -1,0 +1,33 @@
+<div class="body">
+    @if (user$ | async; as user) {
+    <h1>
+        User
+        <i>{{ user.username }}</i>
+    </h1>
+
+    <p>
+        Username: {{ user.username }}
+    </p>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Vorname</mat-label>
+        <input matInput placeholder="Benedikt" [(ngModel)]="user.firstname">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nachname</mat-label>
+        <input matInput placeholder="Schwering" [(ngModel)]="user.lastname">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    
+    <button mat-flat-button class="update" (click)="update(user)">
+        <mat-icon>save</mat-icon>
+        Update User
+    </button>
+    <button mat-flat-button (click)="delete(user)">
+        <mat-icon>delete</mat-icon>
+        Delete User
+    </button>
+    }
+</div>
