@@ -9,7 +9,7 @@
         {{recipe.description}}
     </p>
 
-    <mat-tab-group selectedIndex="2">
+    <mat-tab-group selectedIndex="0">
         <mat-tab label="Übersicht">
             <h2>Allgemein</h2>
             <table>
@@ -80,7 +80,14 @@
                     </mat-card-title>
                     <mat-card-content>
                         <br>
-                        {{review.comment}}
+                        <p>
+                            {{review.comment}}
+                        </p>
+                        @if (isMyReview(review)) {
+                        <button mat-icon-button (click)="deleteReview(review)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        }
                     </mat-card-content>
                 </mat-card>
                 }

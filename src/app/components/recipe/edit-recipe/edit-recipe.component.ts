@@ -5,6 +5,8 @@ import { IngredientService } from '../../../services/ingredient/ingredient.servi
 import { RecipeService } from '../../../services/recipe/recipe.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIngredientComponent } from '../../home/create-ingredient/create-ingredient.component';
+import { config } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -21,6 +23,7 @@ export class EditRecipeComponent {
     private ingredientService: IngredientService,
     private recipeService: RecipeService,
     private dialog: MatDialog,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -65,6 +68,15 @@ export class EditRecipeComponent {
     this.recipeService.updateRecipeV1(this.recipe.id, this.recipe).subscribe(() => {
       alert('Recipe updated');
     });
+  }
+
+  delete() {
+    if(confirm('Are you sure you want to delete this recipe?')) {
+      this.recipeService.deleteRecipeV1(this.recipe.id).subscribe(() => {
+        alert('Recipe deleted');
+        this.router.navigate(['/']);
+      });
+    }
   }
 
 }

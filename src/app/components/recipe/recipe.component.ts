@@ -7,6 +7,7 @@ import { ReviewResponse } from '../../types/review.types';
 import { ReviewService } from '../../services/review/review.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateReviewComponent } from './create-review/create-review.component';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-recipe',
@@ -26,6 +27,7 @@ export class RecipeComponent {
     private route: ActivatedRoute,
     private reviewService: ReviewService,
     private dialog: MatDialog,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -46,6 +48,19 @@ export class RecipeComponent {
     this.dialog.open(CreateReviewComponent, { data: { recipeId: id } }).afterClosed().subscribe(() => {
         this.getRecipe(id);
     });
+  }
+
+  isMyReview(review: ReviewResponse) {
+    return review.author == this.userService.getUsername();
+  }
+
+  deleteReview(review: ReviewResponse) {
+    if(confirm('Are you sure you want to delete this review?')) {
+      this.reviewService.deleteReview(review.id).subscribe(() => {
+        alert('Review deleted');
+        this.getRecipe(review.recipeId);
+      });
+    }
   }
 
 }

@@ -20,4 +20,8 @@ export class ReviewService {
   createReview(review: ReviewRequest): Observable<ReviewResponse> {
     return this.httpClient.post<ReviewResponse>(`${environment.api.reviewV1}`, review);
   }
+
+  deleteReview(reviewId: number): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.api.reviewV1}/${reviewId}`);
+  }
 }
