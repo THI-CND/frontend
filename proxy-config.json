@@ -1,0 +1,61 @@
+{
+    "/api/v1/recipe": {
+        "target": "http://localhost:8088",
+        "secure": false
+    },
+    "/api/v2/recipe": {
+        "target": "http://localhost:8088",
+        "secure": false
+    },
+    
+    "/api/v1/collections": {
+        "target": "http://localhost:8000",
+        "secure": false
+    },
+    "/api/v2/collections": {
+        "target": "http://localhost:8000",
+        "secure": false
+    },
+
+    "/api/v1/notifications": {
+        "target": "http://localhost:8081",
+        "secure": false
+    },
+    "/api/v2/notifications": {
+        "target": "http://localhost:8081",
+        "secure": false
+    },
+    
+    "/api/v1/users": {
+        "target": "http://localhost:8082",
+        "secure": false
+    },
+
+    "/api/v1/ingredients": {
+        "target": "http://localhost:8083",
+        "secure": false
+    },
+    "/api/v2/ingredients": {
+        "target": "http://localhost:8083",
+        "secure": false
+    },
+
+    "/api/v1/reviews": {
+        "target": "http://localhost:8084",
+        "secure": false
+    },
+
+    "/api/v1/feed": {
+        "target": "http://localhost:8085",
+        "secure": false
+    },
+
+    "/api/v1/shopping-list": {
+        "target": "http://localhost:8086",
+        "secure": false
+    },
+    "/api/v2/shopping-list": {
+        "target": "http://localhost:8086",
+        "secure": false
+    }
+}
