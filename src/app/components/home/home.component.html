@@ -1,0 +1,93 @@
+<div class="body">
+    <mat-tab-group>
+        <mat-tab label="Feed">
+            <div class="list">
+                @if (feed$ | async; as feed) {
+                @for (feedItem of feed; track feedItem) {
+                <mat-card class="item">
+                    <mat-chip-set>
+                        <mat-chip>Rezept</mat-chip>
+                    </mat-chip-set>
+                    <h2>{{feedItem.name}}</h2>
+                    <h4>by {{feedItem.author}}</h4>
+                    <p>
+                        {{feedItem.description}}
+                    </p>
+                    <button mat-flat-button [routerLink]="['recipe', feedItem.id]">
+                        <mat-icon>open_in_new</mat-icon>
+                        Open Recipe
+                    </button>
+                </mat-card>
+                }
+                }
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Rezepte">
+            <button mat-flat-button (click)="addRecipe()">
+                <mat-icon>add</mat-icon>
+                Neues Rezept
+            </button>
+
+            <div class="list">
+                @if (recipes$ | async; as recipes) {
+                @for (recipe of recipes; track recipe) {
+                <mat-card class="item">
+                    <mat-chip-set>
+                        <mat-chip>Rezept</mat-chip>
+                    </mat-chip-set>
+                    <h2>{{recipe.name}}</h2>
+                    <h4>by {{recipe.author}}</h4>
+                    <p>
+                        {{recipe.description}}
+                    </p>
+                    <button mat-flat-button [routerLink]="['recipe', recipe.id]">
+                        <mat-icon>open_in_new</mat-icon>
+                        Open Recipe
+                    </button>
+                </mat-card>
+                }
+                }
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Zutaten">
+            <button mat-flat-button (click)="addIngredient()">
+                <mat-icon>add</mat-icon>
+                Neue Zutat
+            </button>
+            <div class="list">
+                @if (ingredients$ | async; as ingredients) {
+                @for (ingredient of ingredients; track ingredient) {
+                <mat-card class="item">
+                    <mat-chip-set>
+                        <mat-chip>Zutat</mat-chip>
+                    </mat-chip-set>
+                    <h2>{{ingredient.name}}</h2>
+                    <h4>{{ingredient.unit}}</h4>
+                    <p>
+                        {{ingredient.tags}}
+                    </p>
+                    <!-- <button mat-flat-button [routerLink]="['recipe', recipe.id]">
+                        <mat-icon>open_in_new</mat-icon>
+                        Open Ingredient
+                    </button> -->
+                </mat-card>
+                }
+                }
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Sammlungen">
+
+        </mat-tab>
+
+        <mat-tab label="Einkaufslisten">
+
+        </mat-tab>
+
+        <mat-tab label="Benutzer">
+
+        </mat-tab>
+    </mat-tab-group>
+</div>

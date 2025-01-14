@@ -1,0 +1,18 @@
+<div class="body">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Kartoffelpüree" [(ngModel)]="name">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Beschreibung</mat-label>
+        <textarea matInput placeholder="Sehr lecker!" [(ngModel)]="description"></textarea>
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button (click)="create()">
+        <mat-icon>add</mat-icon>
+        Create Recipe
+    </button>
+</div>
