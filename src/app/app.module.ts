@@ -34,7 +34,9 @@ import {MatTableModule} from '@angular/material/table';
 import { UserComponent } from './components/user/user.component';
 import { CreateCollectionComponent } from './components/home/create-collection/create-collection.component';
 import { CollectionComponent } from './components/collection/collection.component';
-import { CollectionRecipeComponent } from './components/collection/collection-recipe/collection-recipe.component'; 
+import { CollectionRecipeComponent } from './components/collection/collection-recipe/collection-recipe.component';
+import { CreateShoppingListComponent } from './components/home/create-shopping-list/create-shopping-list.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component'; 
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { CollectionRecipeComponent } from './components/collection/collection-re
     UserComponent,
     CreateCollectionComponent,
     CollectionComponent,
-    CollectionRecipeComponent
+    CollectionRecipeComponent,
+    CreateShoppingListComponent,
+    ShoppingListComponent
   ],
   imports: [
     BrowserModule,

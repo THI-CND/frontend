@@ -1,0 +1,12 @@
+<div class="body">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Familieneinkauf Freitag" [(ngModel)]="name">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <button mat-flat-button (click)="create()">
+        <mat-icon>add</mat-icon>
+        Create Shopping List
+    </button>
+</div>

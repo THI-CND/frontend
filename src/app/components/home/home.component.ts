@@ -14,6 +14,9 @@ import { UserResponseV1 } from '../../types/user.types';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
 import { CollectionResponse } from '../../types/collection.types';
 import { CollectionService } from '../../services/collection/collection.service';
+import { CreateShoppingListComponent } from './create-shopping-list/create-shopping-list.component';
+import { ShoppingListResponse } from '../../types/shopping-list.types';
+import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +32,7 @@ export class HomeComponent {
   ingredients$!: Observable<IngredientResponse[]>;
   users$!: Observable<UserResponseV1[]>;
   collections$!: Observable<CollectionResponse[]>;
+  shoppingLists$!: Observable<ShoppingListResponse[]>;
 
   usersDisplayedColumns: string[] = ['username', 'firstname', 'lastname', 'actions'];
 
@@ -39,6 +43,7 @@ export class HomeComponent {
     private ingredientService: IngredientService,
     private dialog: MatDialog,
     private collectionService: CollectionService,
+    private shoppingListService: ShoppingListService,
   ) { }
 
   ngOnInit() {
@@ -47,6 +52,7 @@ export class HomeComponent {
     this.getIngredients();
     this.getUsers();
     this.getCollections();
+    this.getShoppingLists();
   }
 
   getFeed() {
@@ -67,6 +73,16 @@ export class HomeComponent {
 
   getCollections() {
     this.collections$ = this.collectionService.getCollectionsV1();
+  }
+
+  getShoppingLists() {
+    this.shoppingLists$ = this.shoppingListService.getShoppingListsV1();
+  }
+
+  addShoppingList() {
+    this.dialog.open(CreateShoppingListComponent).afterClosed().subscribe(() => {
+        this.ngOnInit();
+    });
   }
 
   addCollection() {

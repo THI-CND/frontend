@@ -121,11 +121,33 @@
                 }
                 }
             </div>
-
         </mat-tab>
 
         <mat-tab label="Einkaufslisten">
-
+            <button mat-flat-button (click)="addShoppingList()">
+                <mat-icon>add</mat-icon>
+                Neue Einkaufsliste
+            </button>
+            <div class="list">
+                @if (shoppingLists$ | async; as shoppingLists) {
+                @for (shoppingList of shoppingLists; track shoppingList) {
+                <mat-card class="item">
+                    <mat-chip-set>
+                        <mat-chip>Einkaufsliste</mat-chip>
+                    </mat-chip-set>
+                    <h2>{{shoppingList.name}}</h2>
+                    <h4>by {{shoppingList.author}}</h4>
+                    <p>
+                        {{shoppingList.recipes}}
+                    </p>
+                    <button mat-flat-button [routerLink]="['shopping-list', shoppingList.id]">
+                        <mat-icon>open_in_new</mat-icon>
+                        Open Shopping List
+                    </button>
+                </mat-card>
+                }
+                }
+            </div>
         </mat-tab>
 
         <mat-tab label="Benutzer">
