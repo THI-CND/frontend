@@ -25,6 +25,7 @@ import { RecipeStepQuantifiedIngredientComponent } from './components/recipe/rec
 import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateReviewComponent } from './components/recipe/create-review/create-review.component';
+import { IngredientComponent } from './components/ingredient/ingredient.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CreateReviewComponent } from './components/recipe/create-review/create-
     RecipeStepComponent,
     RecipeStepQuantifiedIngredientComponent,
     EditRecipeComponent,
-    CreateReviewComponent
+    CreateReviewComponent,
+    IngredientComponent
   ],
   imports: [
     BrowserModule,

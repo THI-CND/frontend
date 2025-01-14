@@ -24,4 +24,12 @@ export class IngredientService {
   createIngredient(ingredient: IngredientRequest): Observable<IngredientResponse> {
     return this.httpClient.post<IngredientResponse>(`${environment.api.ingredientV1}`, ingredient);
   }
+
+  updateIngredientV1(id: number, ingredient: IngredientRequest): Observable<IngredientResponse> {
+    return this.httpClient.put<IngredientResponse>(`${environment.api.ingredientV1}/${id}`, ingredient);
+  }
+
+  deleteIngredientV1(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.api.ingredientV1}/${id}`);
+  }
 }
