@@ -1,0 +1,15 @@
+<div class="body">
+    <mat-card>
+        <h1>Login</h1>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="user1" [(ngModel)]="username">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <button mat-flat-button (click)="login()">
+            Login
+        </button>
+    </mat-card>
+</div>
