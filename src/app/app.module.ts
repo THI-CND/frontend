@@ -31,7 +31,10 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { NotificationComponent } from './components/notification/notification.component';
 import { CreateUserComponent } from './components/home/create-user/create-user.component';
 import {MatTableModule} from '@angular/material/table';
-import { UserComponent } from './components/user/user.component'; 
+import { UserComponent } from './components/user/user.component';
+import { CreateCollectionComponent } from './components/home/create-collection/create-collection.component';
+import { CollectionComponent } from './components/collection/collection.component';
+import { CollectionRecipeComponent } from './components/collection/collection-recipe/collection-recipe.component'; 
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { UserComponent } from './components/user/user.component';
     IngredientComponent,
     NotificationComponent,
     CreateUserComponent,
-    UserComponent
+    UserComponent,
+    CreateCollectionComponent,
+    CollectionComponent,
+    CollectionRecipeComponent
   ],
   imports: [
     BrowserModule,

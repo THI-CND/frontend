@@ -11,6 +11,9 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { RecipeResponse } from '../../types/recipe.types';
 import { IngredientResponse } from '../../types/ingredient.types';
 import { UserResponseV1 } from '../../types/user.types';
+import { CreateCollectionComponent } from './create-collection/create-collection.component';
+import { CollectionResponse } from '../../types/collection.types';
+import { CollectionService } from '../../services/collection/collection.service';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +28,7 @@ export class HomeComponent {
   recipes$!: Observable<RecipeResponse[]>;
   ingredients$!: Observable<IngredientResponse[]>;
   users$!: Observable<UserResponseV1[]>;
+  collections$!: Observable<CollectionResponse[]>;
 
   usersDisplayedColumns: string[] = ['username', 'firstname', 'lastname', 'actions'];
 
@@ -34,6 +38,7 @@ export class HomeComponent {
     private feedService: FeedService,
     private ingredientService: IngredientService,
     private dialog: MatDialog,
+    private collectionService: CollectionService,
   ) { }
 
   ngOnInit() {
@@ -41,6 +46,7 @@ export class HomeComponent {
     this.getRecipes();
     this.getIngredients();
     this.getUsers();
+    this.getCollections();
   }
 
   getFeed() {
@@ -57,6 +63,16 @@ export class HomeComponent {
 
   getUsers() {
     this.users$ = this.userService.getUsersV1();
+  }
+
+  getCollections() {
+    this.collections$ = this.collectionService.getCollectionsV1();
+  }
+
+  addCollection() {
+    this.dialog.open(CreateCollectionComponent).afterClosed().subscribe(() => {
+        this.ngOnInit();
+    });
   }
 
   addRecipe() {

@@ -1,0 +1,115 @@
+<div class="body">
+    @if (collection$ | async; as collection) {
+    <h1>
+        Collection
+        <i>{{ collection.name }}</i>
+    </h1>
+
+    <mat-tab-group>
+        <mat-tab label="Übersicht">
+            <h2>Allgemein</h2>
+            <table>
+                <tr>
+                    <td>ID:</td>
+                    <td>{{ collection.id }}</td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ collection.name }}</td>
+                </tr>
+                <tr>
+                    <td>Author:</td>
+                    <td>{{ collection.author }}</td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>{{ collection.description }}</td>
+                </tr>
+            </table>
+
+            <h2>Tags</h2>
+            @if (tags$ | async; as tags) {
+            <h3>Intersection</h3>
+            <mat-chip-set>
+                @for (tag of tags.intersection; track tag) {
+                <mat-chip>{{tag}}</mat-chip>
+                }
+            </mat-chip-set>
+
+            <h3>Union</h3>
+            <mat-chip-set>
+                @for (tag of tags.union; track tag) {
+                <mat-chip>{{tag}}</mat-chip>
+                }
+            </mat-chip-set>
+            }
+            @else {
+            lädt...
+            }
+
+            <h2>Rezepte</h2>
+            <ul>
+                @for (recipe of collection.recipes; track $index) {
+                <li>
+                    <app-collection-recipe [recipeId]="recipe"></app-collection-recipe>
+                </li>
+                <br>
+                }
+            </ul>
+        </mat-tab>
+
+        <mat-tab label="Bearbeiten">
+            <div class="edit">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Liste 1" [(ngModel)]="collection.name">
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Beschreibung</mat-label>
+                    <input matInput placeholder="Das ist eine tolle List!" [(ngModel)]="collection.description">
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <h3>Rezepte</h3>
+                <div class="recipes">
+                    @for (recipe of collection.recipes; track $index; let i = $index) {
+                    <div class="recipe">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Rezept</mat-label>
+                            <mat-select [(ngModel)]="collection.recipes[i]">
+                                @for (r of recipes; track $index) {
+                                <mat-option [value]="r.id">
+                                    {{r.name}} ({{r.author}})
+                                </mat-option>
+                                }
+                            </mat-select>
+                            <mat-icon matSuffix>person</mat-icon>
+                        </mat-form-field>
+
+                        <button mat-icon-button (click)="removeRecipe(collection, i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                    }
+
+                    <button mat-flat-button (click)="addRecipe(collection)">
+                        <mat-icon>add</mat-icon>
+                        Rezept hinzufügen
+                    </button>
+                </div>
+
+                <button mat-flat-button class="update" (click)="update(collection)">
+                    <mat-icon>save</mat-icon>
+                    Update Collection
+                </button>
+                <button mat-flat-button (click)="delete(collection)">
+                    <mat-icon>delete</mat-icon>
+                    Delete Collection
+                </button>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    }
+</div>

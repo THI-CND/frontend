@@ -1,0 +1,30 @@
+.body {
+    margin: 1em;
+}
+
+.edit {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.update {
+    margin-top: 4em;
+    margin-bottom: 2em;
+}
+
+.recipes {
+    margin-left: 4em;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: baseline;
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+

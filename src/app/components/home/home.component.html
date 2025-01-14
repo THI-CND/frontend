@@ -4,6 +4,7 @@
             <div class="list">
                 @if (feed$ | async; as feed) {
                 @for (feedItem of feed; track feedItem) {
+                @if(feedItem.type == 'recipe') {
                 <mat-card class="item">
                     <mat-chip-set>
                         <mat-chip>Rezept</mat-chip>
@@ -18,6 +19,23 @@
                         Open Recipe
                     </button>
                 </mat-card>
+                }
+                @if(feedItem.type == 'collection') {
+                <mat-card class="item">
+                    <mat-chip-set>
+                        <mat-chip>Sammlung</mat-chip>
+                    </mat-chip-set>
+                    <h2>{{feedItem.name}}</h2>
+                    <h4>by {{feedItem.author}}</h4>
+                    <p>
+                        {{feedItem.description}}
+                    </p>
+                    <button mat-flat-button [routerLink]="['collection', feedItem.id]">
+                        <mat-icon>open_in_new</mat-icon>
+                        Open Collection
+                    </button>
+                </mat-card>
+                }
                 }
                 }
             </div>
@@ -79,6 +97,30 @@
         </mat-tab>
 
         <mat-tab label="Sammlungen">
+            <button mat-flat-button (click)="addCollection()">
+                <mat-icon>add</mat-icon>
+                Neue Sammlung
+            </button>
+            <div class="list">
+                @if (collections$ | async; as collections) {
+                @for (collection of collections; track collection) {
+                <mat-card class="item">
+                    <mat-chip-set>
+                        <mat-chip>Sammlung</mat-chip>
+                    </mat-chip-set>
+                    <h2>{{collection.name}}</h2>
+                    <h4>by {{collection.author}}</h4>
+                    <p>
+                        {{collection.description}}
+                    </p>
+                    <button mat-flat-button [routerLink]="['collection', collection.id]">
+                        <mat-icon>open_in_new</mat-icon>
+                        Open Collection
+                    </button>
+                </mat-card>
+                }
+                }
+            </div>
 
         </mat-tab>
 
@@ -108,7 +150,7 @@
                         <th mat-header-cell *matHeaderCellDef> Lastname </th>
                         <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
                     </ng-container>
-                    
+
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef> </th>
                         <td mat-cell *matCellDef="let element">
