@@ -1,6 +1,8 @@
 # Frontend
 Das Frontend bietet eine Web Oberfläche zur Bündelung aller Services.
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=THI-CND_frontend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=THI-CND_frontend)
+
 ## Getting Started
 ### Abhängigkeiten
 Um das Projekt lokal zu starten, müssen die folgenden Abhängigkeiten installiert werden:
