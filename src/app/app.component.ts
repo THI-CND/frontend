@@ -15,6 +15,7 @@ import { NotificationComponent } from './components/notification/notification.co
 export class AppComponent {
 
   notificationCount = 0;
+  login: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -28,10 +29,14 @@ export class AppComponent {
         this.getNotifications();
       }
     });
+    
+    timer(0, 10000).subscribe(() => {
+      this.login = this.userService.getUsername() != '';
+    });
   }
   
   isLoggedIn() {
-    return this.userService.getUsername() != '';
+    return this.login;
   }
 
   getNotifications() {

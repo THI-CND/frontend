@@ -4,7 +4,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="user1" [(ngModel)]="username">
+            <input matInput placeholder="user1" [(ngModel)]="username" (keydown.enter)="login()">
             <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
 
