@@ -33,23 +33,23 @@ export class ShoppingListService {
   }
 
   addRecipeToShoppingListV2(id: string, recipe: ShoppingListRecipeRequest) {
-    return this.httpClient.patch<ShoppingListResponse>(`${environment.api.shoppinglistV1}/${id}/recipe`, recipe);
+    return this.httpClient.patch<ShoppingListResponse>(`${environment.api.shoppinglistV2}/${id}/recipe`, recipe);
   }
 
-  removeRecipeFromShoppingListV2(id: string, recipe: ShoppingListRecipeRequest) {
-    return this.httpClient.delete<ShoppingListResponse>(`${environment.api.shoppinglistV1}/${id}/recipe`, { body: recipe });
+  removeRecipeFromShoppingListV2(id: string, recipeId: string) {
+    return this.httpClient.delete<ShoppingListResponse>(`${environment.api.shoppinglistV2}/${id}/recipe/${recipeId}`);
   }
 
   addPurchasedIngredientToShoppingListV2(id: string, ingredient: ShoppingListIngredient) {
-    return this.httpClient.patch<ShoppingListResponse>(`${environment.api.shoppinglistV1}/${id}/purchased-ingredient`, ingredient);
+    return this.httpClient.patch<ShoppingListResponse>(`${environment.api.shoppinglistV2}/${id}/purchased-ingredient`, ingredient);
   }
 
   removePurchasedIngredientFromShoppingListV2(id: string, ingredientId: number) {
-    return this.httpClient.delete<ShoppingListResponse>(`${environment.api.shoppinglistV1}/${id}/purchased-ingredient/${ingredientId}`);
+    return this.httpClient.delete<ShoppingListResponse>(`${environment.api.shoppinglistV2}/${id}/purchased-ingredient/${ingredientId}`);
   }
 
   updateTotalIngredientsInShoppingListV2(id: string) {
-    return this.httpClient.put<ShoppingListResponse>(`${environment.api.shoppinglistV1}/${id}/total-ingredients`, {});
+    return this.httpClient.put<ShoppingListResponse>(`${environment.api.shoppinglistV2}/${id}/total-ingredients`, {});
   }
 
 }

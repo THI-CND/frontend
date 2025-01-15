@@ -3,14 +3,14 @@ export interface ShoppingListResponse {
     name: string;
     author: string;
     recipes: string[];
-    changesRecipes: string[];
+    changedRecipes: string[];
     totalIngredients: ShoppingListIngredient[];
     purchasedIngredients: ShoppingListIngredient[];
     finished: boolean;
 }
 
 export interface ShoppingListIngredient {
-    recipe: number;
+    ingredient: number;
     quantity: number;
 }
 

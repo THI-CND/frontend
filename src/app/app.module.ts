@@ -36,7 +36,12 @@ import { CreateCollectionComponent } from './components/home/create-collection/c
 import { CollectionComponent } from './components/collection/collection.component';
 import { CollectionRecipeComponent } from './components/collection/collection-recipe/collection-recipe.component';
 import { CreateShoppingListComponent } from './components/home/create-shopping-list/create-shopping-list.component';
-import { ShoppingListComponent } from './components/shopping-list/shopping-list.component'; 
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { ShoppingListQuantifiedIngredientComponent } from './components/shopping-list/shopping-list-quantified-ingredient/shopping-list-quantified-ingredient.component';
+import { EditShoppingListComponent } from './components/shopping-list/edit-shopping-list/edit-shopping-list.component'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ShoppingListPurchaseComponent } from './components/shopping-list/shopping-list-purchase/shopping-list-purchase.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -58,7 +63,10 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
     CollectionComponent,
     CollectionRecipeComponent,
     CreateShoppingListComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    ShoppingListQuantifiedIngredientComponent,
+    EditShoppingListComponent,
+    ShoppingListPurchaseComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +86,8 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
     MatBadgeModule,
     MatBottomSheetModule,
     MatTableModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
   ],
   providers: [
     provideAnimationsAsync()

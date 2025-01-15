@@ -1,0 +1,54 @@
+<div class="body">
+    <h2>Zutaten einkaufen</h2>
+
+    @for (totalIngredient of shoppingList.totalIngredients; track $index) {
+    @if (getIngredient(totalIngredient.ingredient); as ingredient) {
+    <h3>
+        {{ ingredient.name }}
+    </h3>
+
+    @if (getPurchasedIngredient(totalIngredient.ingredient); as purchasedIngredient) {
+    <h4>
+        {{ purchasedIngredient.quantity }} {{ ingredient.unit }} von {{ totalIngredient.quantity }} {{ ingredient.unit
+        }} gekauft
+    </h4>
+
+    <div class="add">
+        <mat-form-field appearance="fill">
+            <mat-label>{{ingredient.name}}</mat-label>
+            <input matInput placeholder="5" type="number" [(ngModel)]="addQuantity[totalIngredient.ingredient]">
+            <span matSuffix>{{ingredient.unit}}</span>
+        </mat-form-field>
+
+        <button mat-stroked-button (click)="addPurchasedIngredient(totalIngredient.ingredient, addQuantity[totalIngredient.ingredient])">
+            <mat-icon>add</mat-icon>
+            Hinzufügen
+        </button>
+    </div>
+    }
+    }
+    @else {
+    <h3>
+        Unbekannte Zutat (ID: {{ totalIngredient.ingredient }})
+    </h3>
+    
+    @if (getPurchasedIngredient(totalIngredient.ingredient); as purchasedIngredient) {
+    <h4>
+        {{ purchasedIngredient.quantity }} von {{ totalIngredient.quantity }} gekauft
+    </h4>
+
+    <div class="add">
+        <mat-form-field appearance="fill">
+            <mat-label>Zutat {{totalIngredient.ingredient}}</mat-label>
+            <input matInput placeholder="5" type="number" [(ngModel)]="addQuantity[totalIngredient.ingredient]">
+        </mat-form-field>
+
+        <button mat-stroked-button (click)="addPurchasedIngredient(totalIngredient.ingredient, addQuantity[totalIngredient.ingredient])">
+            <mat-icon>add</mat-icon>
+            Hinzufügen
+        </button>
+    </div>
+    }
+    }
+    }
+</div>
