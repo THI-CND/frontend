@@ -1,0 +1,50 @@
+<div class="body">
+    @if (ingredient$ | async; as ingredient) {
+    <h1>
+        Ingredient
+        <i>{{ ingredient.name }}</i>
+    </h1>
+
+    <p>
+        ID: {{ ingredient.id }}
+    </p>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Mehl" [(ngModel)]="ingredient.name">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Einheit</mat-label>
+        <input matInput placeholder="Gramm" [(ngModel)]="ingredient.unit">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Tags</mat-label>
+        <mat-chip-grid #chipGrid >
+            @for (tag of ingredient.tags; track $index) {
+            <mat-chip-row (removed)="remove(ingredient, tag)">
+                {{tag}}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip-row>
+            }
+        </mat-chip-grid>
+        <input placeholder="New Tag..." #tagInput [(ngModel)]="tag"
+            [matChipInputFor]="chipGrid" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event, ingredient)" />
+    </mat-form-field>
+    
+    <button mat-flat-button class="update" (click)="update(ingredient)">
+        <mat-icon>save</mat-icon>
+        Update Ingredient
+    </button>
+    <button mat-flat-button (click)="delete(ingredient)">
+        <mat-icon>delete</mat-icon>
+        Delete Ingredient
+    </button>
+    }
+</div>

@@ -1,38 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { Recipe } from './shared/models/recipe.model';
-import { RecipeService } from './core/services/recipe.service';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { LayoutComponent } from './layout/layout.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { UserService } from './services/user/user.service';
+import { NotificationService } from './services/notification/notification.service';
+import { NotificationResponse } from './types/notification.types';
+import { timer } from 'rxjs';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @Component({
   selector: 'app-root',
-  imports: [LayoutComponent, CommonModule, HttpClientModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  providers: [RecipeService],
+  standalone: false,
+  styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
-  title = 'frontend';
+export class AppComponent {
 
-  public recipes: Recipe[] | undefined;
+  notificationCount = 0;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private userService: UserService,
+    private notificationService: NotificationService,
+    private bottomSheet: MatBottomSheet,
+  ) { }
 
   ngOnInit() {
-    this.getRecipes();
+    timer(0, 10000).subscribe(() => {
+      if (this.isLoggedIn()) {
+        this.getNotifications();
+      }
+    });
+  }
+  
+  isLoggedIn() {
+    return this.userService.getUsername() != '';
   }
 
-  public getRecipes(): void {
-    this.recipeService.getRecipes().subscribe(
-      (response: Recipe[]) => {
-        this.recipes = response;
-      },
-      (error: any) => {
-        console.error(error);
-      }
-    );
+  getNotifications() {
+    return this.notificationService.getUnreadNotifications(this.userService.getUsername()).subscribe((response: NotificationResponse[]) => {
+      this.notificationCount = response.length;
+    });
+  }
+
+  openNotifications() {
+    this.bottomSheet.open(NotificationComponent);
   }
 }

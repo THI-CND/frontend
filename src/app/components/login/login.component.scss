@@ -1,0 +1,19 @@
+.body {
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+}
+
+mat-card {
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+button {
+    margin-top: 1em;
+}

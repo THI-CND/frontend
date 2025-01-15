@@ -1,0 +1,69 @@
+<div class="body">
+    <h2>Allgemein</h2>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Familieneinkauf Freitag" [(ngModel)]="shoppingList.name">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <p><mat-slide-toggle [(ngModel)]="shoppingList.finished">Fertig</mat-slide-toggle></p>
+
+    <button mat-flat-button class="update" (click)="update()">
+        <mat-icon>save</mat-icon>
+        Update Shopping List
+    </button>
+    <button mat-flat-button (click)="delete()">
+        <mat-icon>delete</mat-icon>
+        Delete Shopping List
+    </button>
+
+    <h2>Rezepte</h2>
+    <div class="recipes">
+        @for (recipe of shoppingList.recipes; track $index; let i = $index) {
+        <div class="recipe">
+            <mat-form-field appearance="fill">
+                <mat-label>Rezept</mat-label>
+                <mat-select [value]="recipe" disabled>
+                    @for (r of recipes; track $index) {
+                    <mat-option [value]="r.id">
+                        {{r.name}} ({{r.author}})
+                    </mat-option>
+                    }
+                </mat-select>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <button mat-icon-button (click)="removeRecipe(recipe)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        }
+        <div class="add">
+            <mat-form-field appearance="fill">
+                <mat-label>Rezept</mat-label>
+                <mat-select [(ngModel)]="newRecipeId">
+                    @for (r of recipes; track $index) {
+                    <mat-option [value]="r.id">
+                        {{r.name}} ({{r.author}})
+                    </mat-option>
+                    }
+                </mat-select>
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <button mat-flat-button (click)="addRecipe()">
+                <mat-icon>add</mat-icon>
+                Rezept hinzufügen
+            </button>
+        </div>
+    </div>
+
+    <h2>Geänderte Rezepte</h2>
+    <p>
+        {{shoppingList.changedRecipes.length}} Rezepte wurden geändert.
+    </p>
+    <button mat-flat-button (click)="updateTotalIngredients()">
+        <mat-icon>update</mat-icon>
+        Gesamtzutaten der geänderten Rezepte aktualisieren
+    </button>
+</div>

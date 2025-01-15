@@ -1,25 +1,28 @@
-<router-outlet></router-outlet>
+<div class="body">
+  <mat-toolbar>
+    <button mat-icon-button routerLink="/">
+      <mat-icon>home</mat-icon>
+    </button>
 
-<div
-  *ngFor="let recipe of recipes"
-  class="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md space-y-4"
->
-  <div class="text-xl font-medium text-black">{{ recipe.name }}</div>
-  <div class="text-gray-500">
-    by {{ recipe.author.name }} ({{ recipe.author.username }})
-  </div>
-  <div class="text-gray-700">{{ recipe.description }}</div>
+    <span>
+      Let him cook!
+    </span>
 
-  <div *ngFor="let step of recipe.steps" class="mt-4">
-    <div class="font-semibold text-gray-800">
-      Schritt {{ recipe.steps.indexOf(step) + 1 }}
-    </div>
-    <div class="text-gray-600">{{ step.description }}</div>
-    <ul class="list-disc list-inside mt-2">
-      <li *ngFor="let ingredient of step.ingredients">
-        {{ ingredient.quantity }} {{ ingredient.ingredient.unit }}
-        {{ ingredient.ingredient.name }}
-      </li>
-    </ul>
-  </div>
+    <span class="spacer"></span>
+
+    @if(isLoggedIn()) {
+    <button mat-icon-button (click)="openNotifications()" [matBadge]="notificationCount">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    }
+
+    <a mat-icon-button href="https://github.com/THI-CND" target="_blank">
+      <mat-icon>info</mat-icon>
+    </a>
+    <button mat-icon-button routerLink="/login">
+      <mat-icon>person</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
 </div>

@@ -1,0 +1,46 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    margin-top: -1em;
+}
+
+h2 {
+    margin-top: 2em;
+}
+
+.update {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+button {
+    margin-right: 1em;
+}
+
+.recipes {
+    margin-left: 4em;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: baseline;
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.add {
+    margin-left: 4em;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: baseline;
+
+    mat-form-field {
+        width: 100%;
+    }
+}

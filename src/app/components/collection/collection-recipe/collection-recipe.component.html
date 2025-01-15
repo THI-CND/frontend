@@ -1,0 +1,13 @@
+@if (recipe$ | async; as recipe) {
+<span>
+    <h3>{{recipe.name}}</h3> by {{recipe.author}}
+    <br>
+    <button mat-stroked-button [routerLink]="['/recipe', recipe.id]">
+        <mat-icon>open_in_new</mat-icon>
+        Open Recipe
+    </button>
+</span>
+}
+@else {
+<span>Unbekanntes Rezept ({{recipeId}})</span>
+}

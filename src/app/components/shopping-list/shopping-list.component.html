@@ -1,0 +1,78 @@
+<div class="body">
+    @if (shoppingList$ | async; as shoppingList) {
+    <h1>
+        Einkaufsliste
+        <i>{{ shoppingList.name }}</i>
+    </h1>
+
+    <mat-tab-group>
+        <mat-tab label="Übersicht">
+            <h2>Allgemein</h2>
+            <table>
+                <tr>
+                    <td>ID:</td>
+                    <td>{{ shoppingList.id }}</td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ shoppingList.name }}</td>
+                </tr>
+                <tr>
+                    <td>Author:</td>
+                    <td>{{ shoppingList.author }}</td>
+                </tr>
+                <tr>
+                    <td>Finished:</td>
+                    <td>{{ shoppingList.finished }}</td>
+                </tr>
+            </table>
+
+            <h2>Rezepte</h2>
+            <ul>
+                @for (recipe of shoppingList.recipes; track $index) {
+                <li>
+                    <app-collection-recipe [recipeId]="recipe"></app-collection-recipe>
+                </li>
+                <br>
+                }
+            </ul>
+
+            <h2>Geänderte Rezepte</h2>
+            <ul>
+                @for (recipe of shoppingList.changedRecipes; track $index) {
+                <li>
+                    <app-collection-recipe [recipeId]="recipe"></app-collection-recipe>
+                </li>
+                <br>
+                }
+            </ul>
+
+            <h2>Gesamtzutaten</h2>
+            <ul>
+                @for (totalIngredient of shoppingList.totalIngredients; track $index) {
+                <li>
+                    <app-shopping-list-quantified-ingredient [quantifiedIngredient]="totalIngredient"></app-shopping-list-quantified-ingredient>
+                </li>
+                }
+            </ul>
+            
+            <h2>Eingekaufte Zutaten</h2>
+            <ul>
+                @for (totalIngredient of shoppingList.purchasedIngredients; track $index) {
+                <li>
+                    <app-shopping-list-quantified-ingredient [quantifiedIngredient]="totalIngredient"></app-shopping-list-quantified-ingredient>
+                </li>
+                }
+            </ul>
+        </mat-tab>
+
+        <mat-tab label="Bearbeiten">
+            <app-edit-shopping-list [shoppingList]="shoppingList"></app-edit-shopping-list>
+        </mat-tab>
+
+        <mat-tab label="Einkaufen">
+            <app-shopping-list-purchase [shoppingList]="shoppingList"></app-shopping-list-purchase>
+        </mat-tab>
+    </mat-tab-group>
+    }
+</div>

@@ -1,0 +1,87 @@
+<div class="body">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Kartoffelpüree" [(ngModel)]="recipe.name">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Beschreibung</mat-label>
+        <textarea matInput placeholder="Sehr lecker!" [(ngModel)]="recipe.description"></textarea>
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <h3>Schritte</h3>
+    <div class="steps">
+        @for (step of recipe.steps; track $index; let j = $index) {
+        <div class="step">
+            <div class="description">
+                <mat-form-field appearance="fill">
+                    <mat-label>Beschreibung</mat-label>
+                    <textarea matInput placeholder="Alle Zutaten vermengen" [(ngModel)]="step.description"></textarea>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <button mat-icon-button (click)="removeStep(j)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+
+            <h4>Zutaten</h4>
+            <div class="ingredients">
+                @for (quantifiedIngredient of step.quantifiedIngredients; track $index; let i = $index) {
+                <div class="ingredient">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Menge</mat-label>
+                        <input matInput type="number" placeholder="100" [(ngModel)]="quantifiedIngredient.quantity">
+                        <mat-icon matSuffix>person</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Zutat</mat-label>
+                        <mat-select [(ngModel)]="quantifiedIngredient.ingredient">
+                            @for (ingredient of ingredients; track $index) {
+                            <mat-option [value]="ingredient.id">
+                                {{ingredient.name}} ({{ingredient.unit}})
+                            </mat-option>
+                            }
+                        </mat-select>
+                        <mat-icon matSuffix>person</mat-icon>
+                    </mat-form-field>
+
+                    <button mat-icon-button (click)="removeQuantifiedIngredient(step, i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                }
+
+                <button mat-flat-button (click)="addQuantifiedIngredient(step)">
+                    <mat-icon>add</mat-icon>
+                    Zutat hinzufügen
+                </button>
+
+                <button mat-flat-button (click)="createIngredient()">
+                    <mat-icon>add</mat-icon>
+                    Globale Zutat erstellen
+                </button>
+            </div>
+
+            <hr>
+        </div>
+        }
+
+        <button mat-flat-button (click)="addStep()">
+            <mat-icon>add</mat-icon>
+            Schritt hinzufügen
+        </button>
+    </div>
+
+    <button mat-flat-button class="update" (click)="update()">
+        <mat-icon>save</mat-icon>
+        Update Recipe
+    </button>
+    <button mat-flat-button (click)="delete()">
+        <mat-icon>delete</mat-icon>
+        Delete Recipe
+    </button>
+</div>

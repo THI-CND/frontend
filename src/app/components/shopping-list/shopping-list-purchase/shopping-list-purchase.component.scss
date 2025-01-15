@@ -1,0 +1,20 @@
+h3 {
+    margin-left: 1em;
+}
+
+h4 {
+    margin-left: 2em;
+    margin-top: 0;
+}
+
+.add {
+    margin-left: 2em;
+    margin-bottom: 3em;
+    display: flex;
+    align-items: baseline;
+    gap: 2em;
+
+    mat-form-field {
+        width: 300px;
+    }
+}
