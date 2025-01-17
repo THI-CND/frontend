@@ -14,7 +14,7 @@ export class ReviewService {
   ) { }
 
   getReviews(recipeId: string): Observable<ReviewResponse[]> {
-    return this.httpClient.get<ReviewResponse[]>(`${environment.api.reviewV1}?reviewId=${recipeId}`);
+    return this.httpClient.get<ReviewResponse[]>(`${environment.api.reviewV1}?recipeId=${recipeId}`);
   }
 
   createReview(review: ReviewRequest): Observable<ReviewResponse> {
