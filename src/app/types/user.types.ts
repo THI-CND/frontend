@@ -9,3 +9,7 @@ export interface UserResponseV2 {
     firstname: string;
     lastname: string;
 }
+
+export interface AuthResponseV1 {
+    jwt: string;
+}

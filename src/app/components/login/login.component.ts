@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
   
   username: string = '';
+  password: string = '';
 
   constructor(
     private userService: UserService,
@@ -21,19 +22,16 @@ export class LoginComponent {
   ) { }
 
   login() {
-    this.userService.getUserV1(this.username).subscribe((user) => {
-      if(user.username != '') {
-        this.userService.setUsername(user.username);
+    this.userService.authenticateV1(this.username, this.password).subscribe(
+      (auth) => {
+        this.userService.setLogin(this.username, auth.jwt);
         this.router.navigate(['/']);
+      },
+      () => {
+        this.userService.setLogin('', '');
+        this.snackbar.open('Invalid username or password', 'ok', { duration: 2000 });
       }
-      else {
-        this.userService.setUsername('');
-        this.snackbar.open('Invalid username', 'ok', { duration: 2000 });
-      }
-    }, () => {
-        this.userService.setUsername('');
-        this.snackbar.open('Invalid username', 'ok', { duration: 2000 });
-    });
+    );
   }
 
 }
