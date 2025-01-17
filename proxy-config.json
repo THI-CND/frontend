@@ -30,6 +30,10 @@
         "target": "http://localhost:8082",
         "secure": false
     },
+    "/api/v1/auth": {
+        "target": "http://localhost:8082",
+        "secure": false
+    },
 
     "/api/v1/ingredients": {
         "target": "http://localhost:8083",

@@ -10,6 +10,7 @@ export const environment = {
         notificationV2: 'api/v2/notifications',
 
         userV1: 'api/v1/users',
+        authV1: 'api/v1/auth',
 
         ingredientV1: 'api/v1/ingredients',
         ingredientV2: 'api/v2/ingredients',
