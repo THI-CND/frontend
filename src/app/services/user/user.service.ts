@@ -25,8 +25,19 @@ export class UserService {
     return '';
   }
 
-  setUsername(username: string) {
+  getJwt(): string {
+    let jwt = window.localStorage.getItem('jwt');
+
+    if (jwt && jwt != '')
+      return jwt;
+    
+    this.router.navigate(['/login']);
+    return '';
+  }
+
+  setLogin(username: string, jwt: string) {
     window.localStorage.setItem('username', username);
+    window.localStorage.setItem('jwt', jwt);
   }
 
   getUsersV1(): Observable<UserResponseV1[]> {
@@ -47,6 +58,10 @@ export class UserService {
 
   deleteUserV1(username: string) {
     return this.httpClient.delete<UserResponseV2>(`${environment.api.userV1}`, { body: { username }});
+  }
+
+  authenticateV1(username: string, password: string) {
+    return this.httpClient.post<any>(`${environment.api.authV1}`, {}, { headers: { Authorization: `${username}:${password}` }});
   }
 
 }
